@@ -1,0 +1,9 @@
+{
+  "text.config.actuallyunbreaking.title": "Настройка Реально Неразрушимого",
+  "text.config.actuallyunbreaking.option.maxLevelOnly": "только максимальный уровень",
+  "text.config.actuallyunbreaking.option.useUnbreakableAtLevel": "использовать неразрушимость на уровне",
+  "text.config.actuallyunbreaking.option.unbreakableAtLevel": "неразрушимый на уровне",
+  "text.config.actuallyunbreaking.option.mendingIncompatibility": "несовместим с mending",
+  "text.config.actuallyunbreaking.option.editEnchantedLootGeneration": "редактировать генерацию зачарованного лута",
+  "text.config.actuallyunbreaking.option.useUnbreakableTag": "использовать тэг unbreakable"
+}

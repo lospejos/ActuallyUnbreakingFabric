@@ -15,7 +15,11 @@ import java.io.IOException;
 
 public class ActuallyUnbreaking implements ModInitializer {
 
-    public static Logger LOGGER = LogManager.getFormatterLogger("actuallyunbreaking");
+    public static final String MOD_ID = "actuallyunbreaking";
+
+    private static final String CONFIG_FILE_NAME = MOD_ID + ".json";
+
+    public static Logger LOGGER = LogManager.getFormatterLogger(MOD_ID);
     public AUConfig config;
     public static ActuallyUnbreaking instance;
 
@@ -25,16 +29,18 @@ public class ActuallyUnbreaking implements ModInitializer {
         instance = this;
     }
 
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
     // config code based bedrockify config code
     // https://github.com/juancarloscp52/BedrockIfy/blob/1.17.x/src/main/java/me/juancarloscp52/bedrockify/Bedrockify.java
     public void loadConfig() {
-        File configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), "actuallyunbreaking.json");
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        File configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), CONFIG_FILE_NAME);
+        //Gson gson = new GsonBuilder().setPrettyPrinting().create();
         if (configFile.exists()) {
-            try {
-                FileReader fileReader = new FileReader(configFile);
+            try (FileReader fileReader = new FileReader(configFile)) {
+                //FileReader fileReader = new FileReader(configFile);
                 config = gson.fromJson(fileReader, AUConfig.class);
-                fileReader.close();
+                //fileReader.close();
             } catch (IOException e) {
                 LOGGER.warn("could not load actuallyunbreaking config options: " + e.getLocalizedMessage());
             }
@@ -45,15 +51,15 @@ public class ActuallyUnbreaking implements ModInitializer {
     }
 
     public void saveConfig() {
-        File configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), "actuallyunbreaking.json");
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        File configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), CONFIG_FILE_NAME);
+        //Gson gson = new GsonBuilder().setPrettyPrinting().create();
         if (!configFile.getParentFile().exists()) {
             configFile.getParentFile().mkdir();
         }
-        try {
-            FileWriter fileWriter = new FileWriter(configFile);
+        try (FileWriter fileWriter = new FileWriter(configFile)) {
+            //FileWriter fileWriter = new FileWriter(configFile);
             fileWriter.write(gson.toJson(config));
-            fileWriter.close();
+            //fileWriter.close();
         } catch (IOException e) {
             LOGGER.warn("could not save actuallyunbreaking config options: " + e.getLocalizedMessage());
         }
